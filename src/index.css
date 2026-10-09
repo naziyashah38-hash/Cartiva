@@ -1,0 +1,7 @@
+@import "tailwindcss";
+/* #EAE6DE ivory #eccd90, #226192 blue , #EF8557 coral*/
+body {
+  background-color: #f0f0ce;
+  color: black;
+  font-family:  Space ;
+}
