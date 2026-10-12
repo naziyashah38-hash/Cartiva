@@ -5,10 +5,27 @@ const Sale = () => {
     <div>
       
       <h3 className='text-center mt-20 text-5xl font-bold text-[#EF8557]'>
-        big billion sale</h3>
-        <div className='font-bold text-left bg-[#063558] w-350 rounded-lg border-x-4 border-y-2 text-[#EF8557] border-[#d4c8b0] p-60 text-8xl ml-20 mt-10 h-100'>
-          
+        Daily offer</h3>
+
+         <div  className='flex justify-around '>
+
+        <div className='flex flex-col items-center justify-center text-center font-bold bg-[#063558]/50 w-60 h-80 rounded-lg border-4 border-y-2 border-[#d4c8b0] cursor-pointer ml-20 mr-20 mt-10 p-40'>
+          <p className='text-5xl text-[#413827]' >under </p>
+          <p className='text-3xl text-[#413827]'>Rs.99</p>
         </div>
+
+        <div className='flex flex-col items-center justify-center text-center font-bold bg-[#063558]/50 w-60 h-80 rounded-lg border-4 border-y-2 cursor-pointer text-[#EF8557] border-[#d4c8b0] p-40 ml-20 mr-20 mt-10'>
+         <p className='text-5xl text-[#413827]' >under </p>
+          <p className='text-3xl text-[#413827]'>Rs.199</p>
+        </div>
+        
+        <div className='flex flex-col items-center justify-center text-center font-bold bg-[#063558]/50 w-60 h-80 rounded-lg border-4 border-y-2 cursor-pointer text-[#EF8557] border-[#d4c8b0] p-40 ml-20 mr-20 mt-10 '>
+          <p className='text-5xl text-[#413827]' >under </p>
+          <p className='text-3xl text-[#413827]'>Rs.299</p>
+        </div>
+
+        </div>
+
       </div>
   )
 }
