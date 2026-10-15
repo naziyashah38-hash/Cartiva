@@ -25,7 +25,7 @@ function BtT() {
       onClick={scrollToTop}
       aria-label="Back to top"
       title="Back to top"
-      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#f5dcac] text-[#226192] shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#226192] hover:text-[#f5dcac] focus:outline-none focus:ring-2 focus:ring-[#226192] ${
+      className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#f5dcac] text-[#757c81] shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#611c1c] hover:text-[#f5dcac] focus:outline-none focus:ring-2 focus:ring-[#B7A89A] ${
         isVisible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"

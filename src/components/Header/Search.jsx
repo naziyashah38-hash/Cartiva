@@ -33,7 +33,8 @@ const Search = () => {
 
               <div className='flex justify-between text-[#722F37]'>
                 <p className='p-3 mt-2 flex text-bold mr-10 '><SearchCheck strokeWidth={1.25} /></p>
-              <span className='p-3 mt-2 text-bold mr-10 '><UserRoundKey strokeWidth={1.25} color='#722F37' /></span>
+              <span className='p-3 mt-2 text-bold mr-10 '><UserRoundKey strokeWidth={1.25} color='#722F37' /></span> 
+              {/* cart */}
               <span className='p-3 mt-2 text-bold mr-10 '> <BaggageClaim strokeWidth={1.25} /></span>
            </div>
             </div>
