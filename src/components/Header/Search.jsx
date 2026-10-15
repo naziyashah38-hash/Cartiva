@@ -1,9 +1,17 @@
-import React from 'react'
+import React  from 'react'
 import { UserRoundKey , BaggageClaim , SearchCheck} from 'lucide-react';
+import { useShop } from '../../context/ShopContext';
+import CartDrawer from '../CartDrawer';
 import Hero from './Hero'
+import { useState } from 'react';
 
 
 const Search = () => {
+
+    const [cartOpen, setCartOpen] = useState(false);
+  const { cart } = useShop();
+
+  const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   return (
     <div >
 
@@ -35,7 +43,23 @@ const Search = () => {
                 <p className='p-3 mt-2 flex text-bold mr-10 '><SearchCheck strokeWidth={1.25} /></p>
               <span className='p-3 mt-2 text-bold mr-10 '><UserRoundKey strokeWidth={1.25} color='#722F37' /></span> 
               {/* cart */}
-              <span className='p-3 mt-2 text-bold mr-10 '> <BaggageClaim strokeWidth={1.25} /></span>
+              <span
+        className="p-3 mt-2 flex text-bold mr-10 relative cursor-pointer"
+        onClick={() => setCartOpen(true)}
+      >
+        <BaggageClaim strokeWidth={1.25} />
+
+        {/* badge with item count */}
+        {cartCount > 0 && (
+          <span className="absolute -top-0.5 -right-0.5 bg-[#a71e2e] text-white
+                           text-[10px] font-bold rounded-full w-5 h-5
+                           flex items-center justify-center">
+            {cartCount}
+          </span>
+        )}
+      </span>
+
+      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
            </div>
             </div>
 
