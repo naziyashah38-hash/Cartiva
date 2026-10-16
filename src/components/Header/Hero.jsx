@@ -45,7 +45,7 @@ export default function Hero() {
   }
 
   return (
-    <div className="w-390 ml-3 mr-3 h-[85vh] relative overflow-hidden">
+    <div className="w-auto ml-3 mr-3  h-[85vh] relative  overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={index}

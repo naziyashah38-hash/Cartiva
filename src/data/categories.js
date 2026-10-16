@@ -5,6 +5,15 @@ export const CATEGORIES = [
   { id: "bracelets", name: "Bracelets", image: "https://i.pinimg.com/bracelet.jpg" },
   { id: "fine-gifts", name: "Fine Gifts", image: "https://i.pinimg.com/gifts.jpg" },
   { id: "wedding", name: "Wedding", image: "https://i.pinimg.com/wedding.jpg" },
+  // curated collection 
+   { id: "petal-pearl", name: "Petal & Pearl", image: "https://i.pinimg.com/petal-pearl.jpg",
+    blurb: "Soft florals and lustrous pearls for a romantic everyday look." },
+  { id: "golden-romance", name: "Golden Romance", image: "https://i.pinimg.com/golden-romance.jpg",
+    blurb: "Warm gold tones made for date nights and special moments." },
+  { id: "celestial-glow", name: "Celestial Glow", image: "https://i.pinimg.com/celestial-glow.jpg",
+    blurb: "Stars, moons and sparkle — inspired by the night sky." },
+  { id: "minimal-muse", name: "Minimal Muse", image: "https://i.pinimg.com/minimal-muse.jpg",
+    blurb: "Clean, delicate lines for effortless everyday elegance." },
 ];
 
 export const NECKLACE_PRODUCTS = [
