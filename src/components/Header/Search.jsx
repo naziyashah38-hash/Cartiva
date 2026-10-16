@@ -1,5 +1,5 @@
 import React  from 'react'
-import { UserRoundKey , BaggageClaim , SearchCheck} from 'lucide-react';
+import { UserRoundKey , BaggageClaim } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 import CartDrawer from '../CartDrawer';
 import Hero from './Hero'
