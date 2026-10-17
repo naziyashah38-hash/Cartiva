@@ -1,53 +1,93 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect  } from "react";
+
 
 const ShopContext = createContext(null);
 
-export function ShopProvider({ children }) {
-  const [cart, setCart] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("cart")) || []; } catch { return []; }
-  });
-  const [wishlist, setWishlist] = useState(() => {
-    try { return JSON.parse(localStorage.getItem("wishlist")) || []; } catch { return []; }
-  });
-  const [toast, setToast] = useState(null);
+// safe localStorage read helper
+const readLS = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  } catch {
+    return [];
+  }
+};
 
-  const notify = (msg) => {
-    setToast(msg);
-    window.clearTimeout(notify.t);
-    notify.t = window.setTimeout(() => setToast(null), 2500);
+export function ShopProvider({ children }) {
+  const [cart, setCart] = useState(() => readLS("cart"));
+  const [wishlist, setWishlist] = useState(() => readLS("wishlist"));
+  const [toast, setToast] = useState(null);
+  const [cartOpen, setCartOpen] = useState(false); 
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
+  // toast with optional action — auto-hides in 4s
+  const notify = (msg, action = null) => {
+    setToast({ msg, action });
+    setTimeout(() => setToast(null), 4000);
   };
 
   const addToCart = (product, qty = 1) => {
-    setCart((c) => {
-      const found = c.find((x) => x.id === product.id);
-      const next = found
-        ? c.map((x) => (x.id === product.id ? { ...x, qty: x.qty + qty } : x))
-        : [...c, { ...product, qty }];
-      localStorage.setItem("cart", JSON.stringify(next));
-      return next;
+    setCart((prev) => {
+      if (prev.find((x) => x.id === product.id)) {
+        return prev.map((x) =>
+          x.id === product.id ? { ...x, qty: x.qty + qty } : x
+        );
+      }
+      return [...prev, { ...product, qty }];
     });
-    notify(product.name + " added to bag");
+    notify("Added to cart 🛒", "view-cart");   
   };
 
   const toggleWishlist = (product) => {
-    setWishlist((w) => {
-      const next = w.some((x) => x.id === product.id)
-        ? w.filter((x) => x.id !== product.id)
-        : [...w, product];
-      localStorage.setItem("wishlist", JSON.stringify(next));
-      return next;
+    setWishlist((prev) => {
+      if (prev.find((x) => x.id === product.id)) {
+        return prev.filter((x) => x.id !== product.id);
+      }
+      return [...prev, product];
     });
-    notify(wishlist.some((x) => x.id === product.id) ? "Removed from wishlist" : "Saved to wishlist ♥");
   };
 
   return (
-    <ShopContext.Provider value={{ cart, setCart, wishlist, toggleWishlist, addToCart, toast, notify }}>
+    <ShopContext.Provider
+      value={{
+        cart,
+        setCart,
+        wishlist,
+        toggleWishlist,
+        addToCart,
+        notify,
+        cartOpen,     
+        setCartOpen,
+        toast,
+      }}
+    >
       {children}
+
+      {/* 🆕 toast with View Cart link — rendered here, uses the SAME setCartOpen */}
       {toast && (
-        <div style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)",
-          background: "#1e2a4a", color: "#fff", padding: "10px 22px", borderRadius: 999,
-          fontSize: 14, zIndex: 60, boxShadow: "0 10px 25px rgba(0,0,0,.25)" }}>
-          {toast}
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-60
+                        bg-white rounded-full shadow-lg px-5 py-3
+                        border border-amber-100 flex items-center gap-4">
+          <span className="text-sm text-[#722F37]">{toast.msg}</span>
+
+          {toast.action === "view-cart" && (
+            <button
+              onClick={() => {
+                setCartOpen(true);   // 🆕 opens the drawer
+                setToast(null);      // hide toast
+              }}
+              className="text-sm font-bold text-[#a71e2e] underline
+                         cursor-pointer bg-none border-none whitespace-nowrap"
+            >
+              View Cart
+            </button>
+          )}
         </div>
       )}
     </ShopContext.Provider>

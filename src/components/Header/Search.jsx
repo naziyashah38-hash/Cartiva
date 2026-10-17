@@ -9,24 +9,24 @@ import { useAuth } from '../../context/AuthContext';
 import LoginModal from '../../Login/LoginModal';
 import NavMenu from "./NavMenu";
 import { Link } from "react-router-dom";
+import MobileMenu from '../MobileMenu';
 
 
 const Search = () => {
 
-    const [cartOpen, setCartOpen] = useState(false);
-  const { cart, wishlist } = useShop();
+  const { cart, wishlist , cartOpen, setCartOpen } = useShop();
   const [loginOpen, setLoginOpen] = useState(false);
 const { user, logout } = useAuth();
-const [open, setOpen] = useState(false);
 
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const wishlistCount = wishlist.length; 
   return (
     <div >
 
+    <div className="md:hidden"><MobileMenu /></div>
       <div className='flex justify-between'>
           
-          <div className='flex gap-13 text-lg bold mt-3 ml-15 items-left cursor-pointer mb-10 text-[#722F37] p-3 rounded-full '>
+          <div className='hidden md:flex  gap-8 text-lg bold mt-3 ml-15 items-left cursor-pointer mb-10 text-[#722F37] p-3 rounded-full '>
          <Link
               to="/return-policy"
               className="hover:text-[#a71e2e]/70 transition-colors duration-300 no-underline text-[#722F37]"
@@ -54,14 +54,14 @@ const [open, setOpen] = useState(false);
          </div>
        
               <div className='flex justify-between items-right text-[#722F37]'>
-              <div className="p-3 mt-3 w-auto mr-10">
+              <div className=" mt-2  mr-4 w-full max-w-xs md:max-w-sm p-3">
                 <SearchBar />
               </div>
 
             {/* user icon OR first name */}
                 {user ? (
                   <div className="relative group">
-                    <span className="p-3 mt-5 flex text-bold mr-5 cursor-pointer
+                    <span className="p-3 mt-4 flex text-bold mr-5 cursor-pointer
                                     text-[#722F37] font-semibold text-sm
                                     hover:text-[#a71e2e] transition-colors duration-300 capitalize">
                        {user.firstName} ▾
@@ -81,7 +81,7 @@ const [open, setOpen] = useState(false);
                   </div>
                 ) : (
                   <span
-                    className="p-3 mt-2 flex text-bold mr-10 cursor-pointer
+                    className="p-3 mt-3 flex text-bold mr-10 cursor-pointer
                               hover:text-[#a71e2e] transition-colors duration-300"
                     onClick={() => setLoginOpen(true)}
                   >
@@ -122,9 +122,10 @@ const [open, setOpen] = useState(false);
             {cartCount}
           </span>
         )}
+        
       </span>
-
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+        <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      
            </div>
             
 

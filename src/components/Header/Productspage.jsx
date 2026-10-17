@@ -98,7 +98,7 @@ export default function ProductsPage({ onBack }) {
   const btn = "px-4 py-2 text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   return (
-    <div className="min-h-screen ml-9 mr-9 rounded-3xl" style={{ background: C.brown,backgroundImage:`url('https://i.pinimg.com/736x/e5/4b/85/e54b85eba65deb247ff538e43dde868c.jpg')`, color: "#fff", fontFamily: "'Cormorant Garamond', serif" }}>
+    <div className="min-h-screen mr-0 md:mr-115 mt-5 mb-6 md:mb-10 ml-9 rounded-3xl" style={{ background: C.brown,backgroundImage:`url('https://i.pinimg.com/736x/e5/4b/85/e54b85eba65deb247ff538e43dde868c.jpg')`, color: "#fff", fontFamily: "'Cormorant Garamond', serif" }}>
       {/* top bar */}
       <header className="flex items-center justify-between px-5 md:px-10 py-8 md:py-10 rounded-t-3xl"
 >
