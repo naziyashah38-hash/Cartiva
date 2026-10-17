@@ -1,5 +1,6 @@
 import React from 'react';
 import { CheckCircle2, Gem, Heart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const features = [
   {
@@ -50,12 +51,12 @@ const OurStory = () => {
             Cartiva was born from a love for timeless beauty and meaningful connections. Each piece is thoughtfully designed to celebrate your story and the moments that matter most.
           </p>
 
-          <a
-            href="#about"
+          <Link
+             to="/about"
             className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#5E3E37] hover:text-[#8A5A44] transition-colors uppercase"
           >
             Learn More About Us <ArrowRight size={14} />
-          </a>
+          </Link>
         </div>
 
         {/* Right Side: Features List with Vertical Separator */}

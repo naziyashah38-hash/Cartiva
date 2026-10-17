@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-/* Add this once in index.html <head>:
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
-*/
-
 const C = {
   cream: "#EADFA9",
   peach: "#E9B79C",

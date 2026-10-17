@@ -1,5 +1,5 @@
 import React  from 'react'
-import { UserRoundKey , BaggageClaim } from 'lucide-react';
+import { UserRoundKey , BaggageClaim ,Heart } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 import CartDrawer from '../CartDrawer';
 import Hero from './Hero'
@@ -7,36 +7,44 @@ import { useState } from 'react';
 import SearchBar from './SearchBar';
 import { useAuth } from '../../context/AuthContext';
 import LoginModal from '../../Login/LoginModal';
+import NavMenu from "./NavMenu";
+import { Link } from "react-router-dom";
 
 
 const Search = () => {
 
     const [cartOpen, setCartOpen] = useState(false);
-  const { cart } = useShop();
+  const { cart, wishlist } = useShop();
   const [loginOpen, setLoginOpen] = useState(false);
 const { user, logout } = useAuth();
+const [open, setOpen] = useState(false);
 
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const wishlistCount = wishlist.length; 
   return (
     <div >
 
       <div className='flex justify-between'>
           
           <div className='flex gap-13 text-lg bold mt-3 ml-15 items-left cursor-pointer mb-10 text-[#722F37] p-3 rounded-full '>
-         <span className='hover:text-[#a71e2e]/70 transition-colors duration-300'>Return</span>
-         <span
-            onClick={() => {
-              window.scrollTo({
-                top: document.documentElement.scrollHeight,
-                behavior: "smooth",
-              });
-            }}
-            className="hover:text-[#a71e2e]/70 transition-colors duration-300"
-          >
-            About us
-          </span>
-        <span className='hover:text-[#a71e2e]/70 transition-colors duration-300'>Collections</span>
-        <span className='hover:text-[#a71e2e]/70 transition-colors duration-300'>Gifts</span>
+         <Link
+              to="/return-policy"
+              className="hover:text-[#a71e2e]/70 transition-colors duration-300 no-underline text-[#722F37]"
+            >
+              Return
+            </Link>
+
+             <Link
+                to="/about"
+                className="hover:text-[#a71e2e]/70 transition-colors duration-300 no-underline text-[#722F37]"
+              >
+                About us
+              </Link>
+
+         <NavMenu />
+       
+        <Link to="/fine-gifts" className='hover:text-[#a71e2e]/70 transition-colors duration-300 no-underline  text-[#722F37]'>Gifts</Link>
+        {/* <Link to="/fine-gifts" className='hover:text-[#a71e2e]/70 transition-colors duration-300 no-underline text-[#722F37]'>Gifts</Link> */}
       </div>
 
        <div className="flex items-center gap-2 justify-center mr-11 mt-5 mb-10">
@@ -46,7 +54,7 @@ const { user, logout } = useAuth();
          </div>
        
               <div className='flex justify-between items-right text-[#722F37]'>
-              <div className="p-3 mt-3 w-50 mr-10">
+              <div className="p-3 mt-3 w-auto mr-10">
                 <SearchBar />
               </div>
 
@@ -83,9 +91,25 @@ const { user, logout } = useAuth();
 
 {loginOpen && <LoginModal onClose={() => setLoginOpen(false)} />}
 
+                <Link
+                    to="/wishlist"
+                    className="p-3 mt-3 flex text-bold mr-10 relative no-underline"
+                  >
+                    <Heart strokeWidth={1.25} color="#722F37" />
+
+                    {/* badge with saved count */}
+                    {wishlistCount > 0 && (
+                      <span className="absolute -top-0.5 -right-0.5 bg-[#a71e2e] text-white
+                                      text-[10px] font-bold rounded-full w-5 h-5
+                                      flex items-center justify-center">
+                        {wishlistCount}
+                      </span>
+                    )}
+                  </Link>
+
               {/* cart */}
               <span
-        className="p-3 mt-4 flex text-bold mr-10 relative cursor-pointer"
+        className="p-3 mt-3 flex text-bold mr-10 relative cursor-pointer"
         onClick={() => setCartOpen(true)}
       >
         <BaggageClaim strokeWidth={1.25} />

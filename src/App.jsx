@@ -11,6 +11,9 @@ import CustomerReviews from "./components/testimonial/CustomerReviews";
 import Newsletter from "./components/testimonial/Newsletter";
 import Support from "./components/Footer/Support";
 import { AuthProvider } from "./context/AuthContext";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import About from "./pages/About";
+import Wishlist from "./pages/Wishlist";
 
 
 // the six category pages
@@ -26,6 +29,8 @@ import PetalPearl from "./pages/cat/PetalPearl";
 import GoldenRomance from "./pages/cat/GoldenRomance";
 import MinimalMuse from "./pages/cat/MinimalMuse";
 import CelestialGlow from "./pages/cat/CelestialGlow";
+
+
 
 export default function App() {
   return (
@@ -61,6 +66,9 @@ export default function App() {
           <Route path="/collections/golden-romance" element={<GoldenRomance />} />
           <Route path="/collections/celestial-glow" element={<CelestialGlow />} />
           <Route path="/collections/minimal-muse" element={<MinimalMuse />} />
+          <Route path="/return-policy" element={<ReturnPolicy />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Routes>
       </BrowserRouter>
     </ShopProvider>
