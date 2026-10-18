@@ -35,7 +35,7 @@ export default function MobileMenu() {
         </svg>
       </button>
        
-<     div className="flex justify-between">
+<     div className="flex justify-between gap-1">
                   {user ? (
                 <button onClick={logout}
                   className="block text-left py-3 text-[#722F37] font-semibold
