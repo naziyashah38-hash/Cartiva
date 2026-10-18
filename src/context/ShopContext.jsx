@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect  } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const ShopContext = createContext(null);
@@ -13,10 +14,12 @@ const readLS = (key) => {
 };
 
 export function ShopProvider({ children }) {
+  const navigate = useNavigate();
   const [cart, setCart] = useState(() => readLS("cart"));
   const [wishlist, setWishlist] = useState(() => readLS("wishlist"));
   const [toast, setToast] = useState(null);
   const [cartOpen, setCartOpen] = useState(false); 
+  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -79,6 +82,7 @@ export function ShopProvider({ children }) {
           {toast.action === "view-cart" && (
             <button
               onClick={() => {
+                 navigate("/");
                 setCartOpen(true);   // 🆕 opens the drawer
                 setToast(null);      // hide toast
               }}

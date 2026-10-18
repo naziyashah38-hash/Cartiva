@@ -1,120 +1,102 @@
-import React, { useState } from 'react';
-import { Heart, ChevronRight, Star } from 'lucide-react';
+import { Link, useNavigate } from "react-router-dom";
+import { useShop } from "../../context/ShopContext";
 
-const products = [
-  {
-    id: 1,
-    name: 'Lumière Heart Necklace',
-    price: '$89.00',
-    rating: 5,
-    image: 'https://i.pinimg.com/736x/37/2b/3a/372b3a272c22a4b422f6bf676d8e4ce1.jpg',
-  },
-  {
-    id: 2,
-    name: 'Eternal Sparkle Ring',
-    price: '$79.00',
-    rating: 5,
-    image: 'https://i.pinimg.com/736x/d7/be/7a/d7be7aff6b466ea19e26c5e2a17a1300.jpg',
-  },
-  {
-    id: 3,
-    name: 'Pearl Grace Earrings',
-    price: '$69.00',
-    rating: 5,
-    image: 'https://i.pinimg.com/736x/14/a7/25/14a725209d64748cb2f50ee96dc8da02.jpg',
-  },
-  {
-    id: 4,
-    name: 'Lavender Blue Bracelet',
-    price: '$99.00',
-    rating: 5,
-    image: 'https://i.pinimg.com/736x/30/c0/ae/30c0aee35cd5532134e9818596f3cda4.jpg',
-  },
-  {
-    id: 5,
-    name: 'Love Knot Ring',
-    price: '$59.00',
-    rating: 5,
-    image: 'https://i.pinimg.com/1200x/49/64/32/49643288f7ade5d74b7dfd5cd9f467d0.jpg',
-  },
+// your best sellers — replace with the real product data / imports you use
+const BEST_SELLERS = [
+  { id: "bs1", name: "Lumière Heart Necklace", price: 8900, oldPrice: 10900,
+    rating: 5, reviewsCount: 210, image: "https://i.pinimg.com/736x/37/2b/3a/372b3a272c22a4b422f6bf676d8e4ce1.jpg" },
+  { id: "bs2", name: "Eternal Sparkle Ring", price: 7900, oldPrice: 9500,
+    rating: 5, reviewsCount: 180, image: "https://i.pinimg.com/736x/d7/be/7a/d7be7aff6b466ea19e26c5e2a17a1300.jpg" },
+  { id: "bs3", name: "Pearl Grace Earrings", price: 6900, oldPrice: 8200,
+    rating: 5, reviewsCount: 150, image: "https://i.pinimg.com/736x/14/a7/25/14a725209d64748cb2f50ee96dc8da02.jpg" },
+  { id: "bs4", name: "Lavender Blue Bracelet", price: 9900, oldPrice: 12500,
+    rating: 5, reviewsCount: 240, image: "https://i.pinimg.com/736x/30/c0/ae/30c0aee35cd5532134e9818596f3cda4.jpg" },
+  { id: "bs5", name: "Love Knot Ring", price: 5900, oldPrice: 7500,
+    rating: 5, reviewsCount: 320, image: "https://i.pinimg.com/1200x/49/64/32/49643288f7ade5d74b7dfd5cd9f467d0.jpg" },
 ];
 
-const BestSellers = () => {
-  const [favorites, setFavorites] = useState({});
+export default function BestSellers() {
+  const { addToCart, wishlist, toggleWishlist, setCartOpen } = useShop();
+  const navigate = useNavigate();
+  
 
-  const toggleFavorite = (id) => {
-    setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
+  const buyNow = (p) => {
+    addToCart(p);
+    navigate("/");        // go home where the drawer lives
+    setCartOpen(true);    // open the drawer
   };
 
   return (
-    <section className="py-12 px-4 max-w-8xl ml-2 mr-2 mx-auto relative">
-      {/* Section Title */}
-      <h3 className="text-center tracking-widest text-sm md:text-base font-semibold text-gray-800 mb-8 uppercase">
-        Best Sellers
-      </h3>
+    <section className="py-12">
+      <h2 className="font-serif text-3xl text-center text-[#722F37] mb-8">
+        BEST SELLERS
+      </h2>
 
-      {/* Product Grid / Slider Container */}
-      <div className="relative">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-          {products.map((product) => (
-            <div key={product.id} className="flex flex-col items-center group">
-              {/* Image Container with Wishlist Icon */}
-              <div className="relative w-full aspect-square bg-[#FBF6F0] rounded-sm overflow-hidden mb-3">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+      <div className="flex gap-6 overflow-x-auto px-3 mr-3 ml-3 pb-4 scrollbar-none">
+        {BEST_SELLERS.map((p) => {
+          const saved = wishlist.some((w) => w.id === p.id);
+          return (
+            <div key={p.id}
+              className="min-w-[240px] bg-white rounded-2xl overflow-hidden
+                         shadow-sm hover:shadow-lg transition-shadow">
 
-                {/* Heart / Wishlist Button */}
+              {/* image + working heart */}
+              <div className="relative h-56 bg-[#f7ede3]">
+                <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
                 <button
-                  onClick={() => toggleFavorite(product.id)}
-                  className="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition-colors p-1"
-                  aria-label="Add to Wishlist"
+                  onClick={() => toggleWishlist(p)}
+                  className="absolute top-2.5 right-2.5 w-9 h-9 rounded-full
+                             bg-white/90 border-none text-lg cursor-pointer"
+                  title={saved ? "Remove from wishlist" : "Save to wishlist"}
                 >
-                  <Heart
-                    size={18}
-                    className={
-                      favorites[product.id]
-                        ? 'fill-red-500 text-red-500'
-                        : 'text-gray-600 hover:text-red-500'
-                    }
-                  />
+                  <span className={saved ? "text-rose-500" : "text-amber-900/40"}>
+                    {saved ? "♥" : "♡"}
+                  </span>
                 </button>
               </div>
 
-              {/* Product Info */}
-              <div className="text-center">
-                <h4 className="text-xs sm:text-sm font-medium text-gray-800 tracking-wide mb-1">
-                  {product.name}
-                </h4>
-
-                {/* Star Rating */}
-                <div className="flex justify-center gap-0.5 text-amber-700 mb-1">
-                  {[...Array(product.rating)].map((_, i) => (
-                    <Star key={i} size={12} fill="currentColor" stroke="none" />
-                  ))}
+              <div className="p-4">
+                <div className="font-semibold text-[#722F37]">{p.name}</div>
+                <div className="text-xs text-amber-700 my-1">
+                  {"★".repeat(p.rating)}{"☆".repeat(5 - p.rating)} ({p.reviewsCount})
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold">₹{p.price.toLocaleString("en-IN")}</span>
+                  <span className="text-xs text-amber-900/40 line-through">
+                    ₹{p.oldPrice.toLocaleString("en-IN")}
+                  </span>
                 </div>
 
-                {/* Price */}
-                <p className="text-xs sm:text-sm font-semibold text-gray-900">
-                  {product.price}
-                </p>
+                {/* actions */}
+                <div className="grid grid-cols-2 gap-2 mt-3">
+                  <button
+                    onClick={() => addToCart(p)}
+                    className="border border-[#722F37] text-[#722F37] bg-white
+                               py-2 rounded-full text-xs cursor-pointer
+                               hover:bg-amber-50 transition"
+                  >
+                    Add to Bag
+                  </button>
+                  <button
+                    onClick={() => buyNow(p)}
+                    className="bg-[#722F37] text-white border-none
+                               py-2 rounded-full text-xs cursor-pointer
+                               hover:bg-[#a71e2e] transition"
+                  >
+                    Buy Now
+                  </button>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
+      </div>
 
-        {/* Right Arrow Navigation Button */}
-        <button
-          className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-md border border-gray-100 text-gray-600 hover:bg-gray-50 transition-all z-10 hidden sm:flex items-center justify-center"
-          aria-label="Next slide"
-        >
-          <ChevronRight size={18} />
-        </button>
+      <div className="text-center mt-6">
+        <Link to="/wishlist" className="text-sm text-[#a71e2e] underline">
+          View Wishlist ({wishlist.length})
+        </Link>
       </div>
     </section>
   );
-};
-
-export default BestSellers;
+}

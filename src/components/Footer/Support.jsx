@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Pin,
   Lock,
@@ -52,13 +53,13 @@ const Support = () => {
             <h4 className="text-xs font-bold tracking-widest text-[#3D231D] uppercase mb-4">
               Shop
             </h4>
-            <ul className="space-y-2 text-xs font-light text-gray-600">
-              <li><a href="#all" className="hover:text-[#8A5A44] transition-colors">All Jewelry</a></li>
-              <li><a href="#necklaces" className="hover:text-[#8A5A44] transition-colors">Necklaces</a></li>
-              <li><a href="#earrings" className="hover:text-[#8A5A44] transition-colors">Earrings</a></li>
-              <li><a href="#rings" className="hover:text-[#8A5A44] transition-colors">Rings</a></li>
-              <li><a href="#bracelets" className="hover:text-[#8A5A44] transition-colors">Bracelets</a></li>
-              <li><a href="#gifts" className="hover:text-[#8A5A44] transition-colors">Gifts</a></li>
+            <ul className="space-x-2  text-xs font-light text-gray-600">
+            <li> <Link to="/all-jewelry" className="...">All Jewelry</Link> </li>  {/* your existing category route */}
+             <li> <Link to="/necklaces" className="...">Necklaces</Link></li>
+            <li>  <Link to="/earrings" className="...">Earrings</Link></li>
+             <li> <Link to="/rings" className="...">Rings</Link></li>
+            <li>  <Link to="/bracelets" className="...">Bracelets</Link></li>
+            <li>  <Link to="/fine-gifts" className="...">Gifts</Link></li>
             </ul>
           </div>
 
@@ -66,13 +67,13 @@ const Support = () => {
           <div>
             <h4 className="text-xs font-bold tracking-widest text-[#3D231D] uppercase mb-4">
               Collections
-            </h4>
+            </h4> 
             <ul className="space-y-2 text-xs font-light text-gray-600">
-              <li><a href="#petal-pearl" className="hover:text-[#8A5A44] transition-colors">Petal & Pearl</a></li>
-              <li><a href="#golden-romance" className="hover:text-[#8A5A44] transition-colors">Golden Romance</a></li>
-              <li><a href="#celestial-glow" className="hover:text-[#8A5A44] transition-colors">Celestial Glow</a></li>
-              <li><a href="#minimal-muse" className="hover:text-[#8A5A44] transition-colors">Minimal Muse</a></li>
-              <li><a href="#wedding" className="hover:text-[#8A5A44] transition-colors">Wedding</a></li>
+           <li>  <Link to="/collections/petal-and-pearl" className="...">Petal & Pearl</Link></li>
+            <li>  <Link to="/collections/golden-romance" className="...">Golden Romance</Link></li>
+             <li> <Link to="/collections/celestial-glow" className="...">Celestial Glow</Link></li>
+             <li> <Link to="/collections/minimal-muse" className="...">Minimal Muse</Link></li>
+             <li> <Link to="/collections/wedding" className="...">Wedding</Link></li>
             </ul>
           </div>
 
@@ -82,12 +83,12 @@ const Support = () => {
               Help
             </h4>
             <ul className="space-y-2 text-xs font-light text-gray-600">
-              <li><a href="#faq" className="hover:text-[#8A5A44] transition-colors">FAQ</a></li>
-              <li><a href="#shipping" className="hover:text-[#8A5A44] transition-colors">Shipping & Delivery</a></li>
-              <li><a href="#returns" className="hover:text-[#8A5A44] transition-colors">Returns & Exchanges</a></li>
-              <li><a href="#size-guide" className="hover:text-[#8A5A44] transition-colors">Size Guide</a></li>
-              <li><a href="#care-guide" className="hover:text-[#8A5A44] transition-colors">Care Guide</a></li>
-              <li><a href="#contact" className="hover:text-[#8A5A44] transition-colors">Contact Us</a></li>
+            <li>  <Link to="/faq" className="...">FAQ</Link></li>
+            <li>  <Link to="/shipping" className="...">Shipping & Delivery</Link></li>
+           <li>   <Link to="/return-policy" className="...">Returns & Exchanges</Link>  </li> {/* your existing page! */}
+           <li>   <Link to="/size-guide" className="...">Size Guide</Link></li>
+            <li>  <Link to="/care-guide" className="...">Care Guide</Link></li>
+            <li>  <Link to="/contact" className="...">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -97,10 +98,10 @@ const Support = () => {
               About
             </h4>
             <ul className="space-y-2 text-xs font-light text-gray-600">
-              <li><a href="#story" className="hover:text-[#8A5A44] transition-colors">Our Story</a></li>
-              <li><a href="#sustainability" className="hover:text-[#8A5A44] transition-colors">Sustainability</a></li>
-              <li><a href="#journal" className="hover:text-[#8A5A44] transition-colors">Journal</a></li>
-              <li><a href="#careers" className="hover:text-[#8A5A44] transition-colors">Careers</a></li>
+           <li>   <Link to="/about" className="...">Our Story</Link> </li>  {/* or /our-story if you prefer the new page */}
+             <li> <Link to="/sustainability" className="...">Sustainability</Link></li>
+             <li> <Link to="/journal" className="...">Journal</Link></li>
+            <li>  <Link to="/careers" className="...">Careers</Link></li>
             </ul>
           </div>
 
@@ -153,9 +154,8 @@ const Support = () => {
           <p>© 2026 Cartiva . All rights reserved.</p>
           <span className="hidden sm:inline">|</span>
           <div className="flex gap-4">
-            <a href="#privacy" className="hover:text-[#8A5A44] transition-colors">Privacy Policy</a>
-            <span>|</span>
-            <a href="#terms" className="hover:text-[#8A5A44] transition-colors">Terms of Service</a>
+           <Link to="/privacy" className="...">Privacy Policy</Link>
+           <Link to="/terms" className="...">Terms of Service</Link>
           </div>
         </div>
 

@@ -5,18 +5,24 @@ import { useAuth } from "../context/AuthContext";
 import LoginModal from "../Login/LoginModal";
 import { CATEGORIES } from "../data/categories";
 import { COLLECTIONS } from "../data/collections";
+import { BaggageClaim } from "lucide-react";
+import CartDrawer from "./CartDrawer";
+import SearchBar from "./Header/SearchBar";
 
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const { user, logout } = useAuth();
-  const { wishlist } = useShop();
+  const { cart, wishlist , cartOpen, setCartOpen } = useShop();
+  
+   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
   const close = () => setOpen(false);
 
   return (
     <>
+    <div className="flex ">
       {/* hamburger button — phone only */}
       <button
         onClick={() => setOpen(true)}
@@ -28,6 +34,40 @@ export default function MobileMenu() {
         </svg>
       </button>
 
+                  {user ? (
+                <button onClick={logout}
+                  className="block w-full text-left py-3 text-[#722F37] font-semibold
+                             bg-none border-none cursor-pointer hover:text-[#a71e2e]">
+                   {user.firstName}
+                </button>
+              ) : (
+                <button onClick={() => { setLoginOpen(true); }}
+                  className="block w-full text-left py-3 text-[#722F37] font-semibold
+                             bg-none border-none cursor-pointer hover:text-[#a71e2e]">
+                 Sign up
+                </button>
+              )}
+              <div className='flex  ml-15 justify-center text-[#722F37]'>
+                                <div className=" mt-3.5 w-full p-2">
+                                  <SearchBar />
+                                </div></div>
+
+              <div  onClick={() => setCartOpen(true)}
+                className="block w-full text-left py-7 ml-9 text-[#722F37] font-semibold
+                             bg-none border-none cursor-pointer hover:text-[#a71e2e]"><BaggageClaim strokeWidth={1.25} />
+                           </div>
+                           {cartCount > 0 && (
+                                     <span className="absolute top-3.5 right-13 bg-[#a71e2e] text-white
+                                                      text-[8px] font-bold rounded-full w-4 h-4
+                                                      flex items-center justify-center">
+                                       {cartCount}
+                                     </span>
+                                   )} 
+                <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+
+                  
+
+    </div>
       {/* drawer */}
       {open && (
         <>
@@ -38,8 +78,10 @@ export default function MobileMenu() {
           <div className="fixed top-0 left-0 h-full w-72 bg-white z-50 overflow-y-auto
                           shadow-2xl md:hidden">
             {/* header */}
-            <div className="flex items-center justify-between p-5 border-b border-amber-100">
-              <span className="font-serif order-2 md:order-0 mx-auto md:mx-0 font-bold tracking-[0.2em] text-[#722F37]">CARTIVA</span>
+            <div className="flex items-center justify-center  border-b border-amber-100">
+              <span className="font-serif order-2 md:order-0 mx-auto md:mx-0 font-bold tracking-widest text-[#722F37]">CARTIVA</span>
+              
+
               <button onClick={close}
                 className="w-8 h-8 rounded-full bg-amber-50 text-[#722F37]
                            border-none cursor-pointer">✕</button>

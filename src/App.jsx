@@ -14,6 +14,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import About from "./pages/About";
 import Wishlist from "./pages/Wishlist";
+import InfoPage from "./pages/InfoPage";
 
 
 // the six category pages
@@ -35,8 +36,8 @@ import CelestialGlow from "./pages/cat/CelestialGlow";
 export default function App() {
   return (
      <AuthProvider>
-    <ShopProvider>
       <BrowserRouter>
+      <ShopProvider>
         <Routes>
           <Route path="/" element={
             <>
@@ -69,9 +70,24 @@ export default function App() {
           <Route path="/return-policy" element={<ReturnPolicy />} />
           <Route path="/about" element={<About />} />
           <Route path="/wishlist" element={<Wishlist />} />
-        </Routes>
+
+          {/* info */}
+          <Route path="/faq" element={<InfoPage pageId="faq" />} />
+          <Route path="/shipping" element={<InfoPage pageId="shipping" />} />
+          <Route path="/size-guide" element={<InfoPage pageId="size" />} />
+          <Route path="/care-guide" element={<InfoPage pageId="care" />} />
+          <Route path="/contact" element={<InfoPage pageId="contact" />} />
+          <Route path="/our-story" element={<InfoPage pageId="story" />} />
+          <Route path="/sustainability" element={<InfoPage pageId="sustainability" />} />
+          <Route path="/journal" element={<InfoPage pageId="journal" />} />
+          <Route path="/careers" element={<InfoPage pageId="careers" />} />
+          <Route path="/privacy" element={<InfoPage pageId="privacy" />} />
+          <Route path="/terms" element={<InfoPage pageId="terms" />} />
+
+           </Routes>
+         </ShopProvider>
       </BrowserRouter>
-    </ShopProvider>
+   
       </AuthProvider>
   );
 }
