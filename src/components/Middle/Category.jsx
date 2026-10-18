@@ -16,19 +16,19 @@ const Category = () => {
         SHOP BY CATEGORY
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 justify-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center">
         {categories.map((c) => (
           <Link
             to={"/" + c.id}
             key={c.id}
             className="flex flex-col items-center gap-3 no-underline"
           >
-            <div className="rounded-full p-1  transition-all duration-300
+            <div className="rounded-full p-2  transition-all duration-300
                             hover:scale-110 hover:border-[#722F37] border-2 border-transparent">
               <img
                 src={c.image}
                 alt={c.name}
-                className="w-full h-100 object-cover group-hover:scale-105 rounded-full transition-transform duration-300"
+                className="w-35 h-35 object-cover group-hover:scale-105 rounded-full transition-transform duration-300"
               />
             </div>
 

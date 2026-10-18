@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import LoginModal from "../Login/LoginModal";
 import { CATEGORIES } from "../data/categories";
 import { COLLECTIONS } from "../data/collections";
-import { BaggageClaim } from "lucide-react";
+import { BaggageClaim ,Search } from "lucide-react";
 import CartDrawer from "./CartDrawer";
 import SearchBar from "./Header/SearchBar";
 
@@ -15,6 +15,8 @@ export default function MobileMenu() {
   const [loginOpen, setLoginOpen] = useState(false);
   const { user, logout } = useAuth();
   const { cart, wishlist , cartOpen, setCartOpen } = useShop();
+  const [searchOpen, setSearchOpen] = useState(false);
+    
   
    const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
@@ -42,27 +44,40 @@ export default function MobileMenu() {
                 </button>
               ) : (
                 <button onClick={() => { setLoginOpen(true); }}
-                  className="block w-full text-left py-3 text-[#722F37] font-semibold
+                  className="block w-auto text-left py-3 text-[#722F37] font-semibold
                              bg-none border-none cursor-pointer hover:text-[#a71e2e]">
                  Sign up
                 </button>
               )}
-              <div className='flex  ml-15 justify-center text-[#722F37]'>
-                                <div className=" mt-3.5 w-full p-2">
-                                  <SearchBar />
-                                </div></div>
+
+
+                   
+                                 {/* phone search dropdown — tap icon to show/hide */}
+                              {searchOpen && (
+                              <div className="mt-5 w-full ml-4 ">
+                              <SearchBar />
+                              </div>
+                            )} <button
+                              onClick={() => setSearchOpen(!searchOpen)}
+                              aria-label="Search"
+                               className="flex  ml-18 mt-7 text-center justify-center text-[#722F37]"
+                               >
+                                <Search strokeWidth={1.25} />
+                               </button>
+
 
               <div  onClick={() => setCartOpen(true)}
-                className="block w-full text-left py-7 ml-9 text-[#722F37] font-semibold
+                className="block w-full text-left py-7 ml-6 text-[#722F37] font-semibold
                              bg-none border-none cursor-pointer hover:text-[#a71e2e]"><BaggageClaim strokeWidth={1.25} />
-                           </div>
+                          
                            {cartCount > 0 && (
-                                     <span className="absolute top-3.5 right-13 bg-[#a71e2e] text-white
+                                     <span className="absolute top-3.5  bg-[#a71e2e] text-white
                                                       text-[8px] font-bold rounded-full w-4 h-4
                                                       flex items-center justify-center">
                                        {cartCount}
                                      </span>
-                                   )} 
+                                     
+                                   )}  </div>
                 <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
 
                   

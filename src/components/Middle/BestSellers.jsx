@@ -37,7 +37,7 @@ export default function BestSellers() {
           const saved = wishlist.some((w) => w.id === p.id);
           return (
             <div key={p.id}
-              className="min-w-[240px] bg-white rounded-2xl overflow-hidden
+              className="min-w-80 bg-white rounded-2xl overflow-hidden
                          shadow-sm hover:shadow-lg transition-shadow">
 
               {/* image + working heart */}

@@ -1,4 +1,3 @@
-import React  from 'react'
 import { UserRoundKey , BaggageClaim ,Heart } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
 import CartDrawer from '../CartDrawer';
@@ -11,12 +10,13 @@ import NavMenu from "./NavMenu";
 import { Link } from "react-router-dom";
 import MobileMenu from '../MobileMenu';
 
-
 const Search = () => {
 
   const { cart, wishlist , cartOpen, setCartOpen } = useShop();
   const [loginOpen, setLoginOpen] = useState(false);
-const { user, logout } = useAuth();
+  const { user, logout } = useAuth();
+
+
 
   const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const wishlistCount = wishlist.length; 
@@ -127,7 +127,20 @@ const { user, logout } = useAuth();
         <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
       
            </div>
-            
+           {/* <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                aria-label="Search"
+                className="hidden md:flex p-2 bg-none border-none cursor-pointer text-[#722F37]"
+              >
+                <SearchSlash strokeWidth={1.25} />
+              </button> */}
+              {/* phone search dropdown — tap icon to show/hide */}
+                        {/* {searchOpen && (
+            <div className="hidden md:flex px-4 pb-3">
+              <SearchBar />
+            </div>
+          )} */}
+ 
 
       </div>
        <Hero />

@@ -3,12 +3,12 @@ import { COLLECTIONS } from "../../data/collections";
 
 const Collection = () => {
   return (
-    <section className="max-w-6xl mx-auto px-5 py-10">
+    <section className="max-w-7xl mx-auto px-5 py-6 ">
       <h2 className="text-center text-2xl md:text-3xl font-bold text-[#722F37] mb-10">
         CURATED COLLECTIONS
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-9">
         {COLLECTIONS.map((c) => (
           <Link
             to={"/collections/" + c.id}
