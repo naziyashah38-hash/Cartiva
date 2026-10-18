@@ -15,7 +15,6 @@ export default function MobileMenu() {
   const [loginOpen, setLoginOpen] = useState(false);
   const { user, logout } = useAuth();
   const { cart, wishlist , cartOpen, setCartOpen } = useShop();
-  const [searchOpen, setSearchOpen] = useState(false);
     
   
    const cartCount = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -35,10 +34,11 @@ export default function MobileMenu() {
           <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
         </svg>
       </button>
-
+       
+<     div className="flex justify-between">
                   {user ? (
                 <button onClick={logout}
-                  className="block w-full text-left py-3 text-[#722F37] font-semibold
+                  className="block text-left py-3 text-[#722F37] font-semibold
                              bg-none border-none cursor-pointer hover:text-[#a71e2e]">
                    {user.firstName}
                 </button>
@@ -50,24 +50,12 @@ export default function MobileMenu() {
                 </button>
               )}
 
-
-                   
-                                 {/* phone search dropdown — tap icon to show/hide */}
-                              {searchOpen && (
-                              <div className="mt-5 w-full ml-4 ">
-                              <SearchBar />
-                              </div>
-                            )} <button
-                              onClick={() => setSearchOpen(!searchOpen)}
-                              aria-label="Search"
-                               className="flex  ml-18 mt-7 text-center justify-center text-[#722F37]"
-                               >
-                                <Search strokeWidth={1.25} />
-                               </button>
-
-
+                   <div className="mt-5 w-full mr-5 ">
+                      <SearchBar />
+                    </div>
+                            
               <div  onClick={() => setCartOpen(true)}
-                className="block w-full text-left py-7 ml-6 text-[#722F37] font-semibold
+                className="block w- text-left py-7 mr-3 text-[#722F37] font-semibold
                              bg-none border-none cursor-pointer hover:text-[#a71e2e]"><BaggageClaim strokeWidth={1.25} />
                           
                            {cartCount > 0 && (
@@ -77,10 +65,8 @@ export default function MobileMenu() {
                                        {cartCount}
                                      </span>
                                      
-                                   )}  </div>
-                <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
-
-                  
+                                   )}  </div> </div>
+                <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />              
 
     </div>
       {/* drawer */}
