@@ -32,12 +32,12 @@ export default function BestSellers() {
         BEST SELLERS
       </h2>
 
-      <div className="flex gap-6 overflow-x-auto px-3 mr-3 ml-3 pb-4 scrollbar-none">
+      <div className="flex gap-6 overflow-x-auto px-3 mr-10 ml-10 pb-4  scrollbar-none">
         {BEST_SELLERS.map((p) => {
           const saved = wishlist.some((w) => w.id === p.id);
           return (
             <div key={p.id}
-              className="min-w-80 bg-white rounded-2xl overflow-hidden
+              className="w-full bg-white rounded-2xl overflow-hidden
                          shadow-sm hover:shadow-lg transition-shadow">
 
               {/* image + working heart */}

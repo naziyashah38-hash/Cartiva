@@ -67,8 +67,15 @@ export default function MobileMenu() {
                                      
                                    )}  </div> </div>
                 <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />              
-
     </div>
+
+                        <div className="flex items-center gap-2 justify-center  mt-5 mb-10">
+                <span className="text-amber-600 text-xl">✦</span>
+                <span className="text-3xl font-serif font-bold tracking-[0.3em] text-[#722F37]">CARTIVA</span>
+                <span className="text-amber-600 text-xl">✦</span>
+         </div>
+
+
       {/* drawer */}
       {open && (
         <>
