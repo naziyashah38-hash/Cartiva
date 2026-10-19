@@ -1,4 +1,4 @@
-import CategoryLayout from "../components/CategoryLayout";
+import CategoryLayout from "../cart/CategoryLayout";
 import { NECKLACE_PRODUCTS } from "../data/categories";
 
 export default function Necklaces() {

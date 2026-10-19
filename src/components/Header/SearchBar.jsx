@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import ProductModal from "../ProductModal";
+import ProductModal from "../../product/ProductModal";
 import { useShop } from "../../context/ShopContext";
 
 // import ALL product lists so search covers everything

@@ -1,4 +1,4 @@
-import CategoryLayout from "../../components/CategoryLayout";
+import CategoryLayout from "../../cart/CategoryLayout";
 import { PETAL_PEARL_PRODUCTS } from "../../data/collections";
 
 export default function PetalPearl() {

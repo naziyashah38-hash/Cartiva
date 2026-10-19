@@ -1,4 +1,4 @@
-import CategoryLayout from "../../components/CategoryLayout";
+import CategoryLayout from "../../cart/CategoryLayout";
 import { CELESTIAL_GLOW_PRODUCTS } from "../../data/collections";
 
 export default function CelestialGlow() {

@@ -6,7 +6,7 @@ import LoginModal from "../Login/LoginModal";
 import { CATEGORIES } from "../data/categories";
 import { COLLECTIONS } from "../data/collections";
 import { BaggageClaim ,Search } from "lucide-react";
-import CartDrawer from "./CartDrawer";
+import CartDrawer from "../cart/CartDrawer";
 import SearchBar from "./Header/SearchBar";
 
 

@@ -1,6 +1,6 @@
 import { UserRoundKey , BaggageClaim ,Heart } from 'lucide-react';
 import { useShop } from '../../context/ShopContext';
-import CartDrawer from '../CartDrawer';
+import CartDrawer from '../../cart/CartDrawer';
 import Hero from './Hero'
 import { useState } from 'react';
 import SearchBar from './SearchBar';
@@ -127,20 +127,6 @@ const Search = () => {
         <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
       
            </div>
-           {/* <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                aria-label="Search"
-                className="hidden md:flex p-2 bg-none border-none cursor-pointer text-[#722F37]"
-              >
-                <SearchSlash strokeWidth={1.25} />
-              </button> */}
-              {/* phone search dropdown — tap icon to show/hide */}
-                        {/* {searchOpen && (
-            <div className="hidden md:flex px-4 pb-3">
-              <SearchBar />
-            </div>
-          )} */}
- 
 
       </div>
        <Hero />

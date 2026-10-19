@@ -1,4 +1,4 @@
-import CategoryLayout from "../components/CategoryLayout";
+import CategoryLayout from "../cart/CategoryLayout";
 import { FINE_GIFT_PRODUCTS } from "../data/categories";
 
 export default function FineGifts() {

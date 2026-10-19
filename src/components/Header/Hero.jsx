@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProductsPage from "./Productspage";
+import ProductsPage from "../../product/Productspage";
 
 // Replace the image URLs, titles and subtitles with your own
 const slides = [

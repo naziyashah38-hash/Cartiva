@@ -98,7 +98,7 @@ export default function ProductsPage({ onBack }) {
   const btn = "px-4 py-2 text-sm transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
   return (
-    <div className="min-h-screen mr-0 md:mr-115 mt-5 mb-6 md:mb-10 ml-9 rounded-3xl" style={{ background: C.brown,backgroundImage:`url('https://i.pinimg.com/736x/e5/4b/85/e54b85eba65deb247ff538e43dde868c.jpg')`, color: "#fff", fontFamily: "'Cormorant Garamond', serif" }}>
+    <div className="min-h-screen  w-80% mt-5 mb-6 md:mb-10 ml-1 rounded-3xl " style={{ background: C.brown,backgroundImage:`url('https://i.pinimg.com/736x/e5/4b/85/e54b85eba65deb247ff538e43dde868c.jpg')`, color: "#fff", fontFamily: "'Cormorant Garamond', serif" }}>
       {/* top bar */}
       <header className="flex items-center justify-between px-5 md:px-10 py-8 md:py-10 rounded-t-3xl"
 >
@@ -112,7 +112,7 @@ export default function ProductsPage({ onBack }) {
       </header>
 
       {/* collage hero */}
-      <section className="relative max-w-5xl mx-auto px-5 pt-4 pb-16">
+      <section className="relative max-w-5xl mx-auto px-9 pt-4 pb-16">
         <div className="relative mx-auto " style={{ maxWidth: 520, aspectRatio: "4 / 5"}}>
           {[
             { p: PRODUCTS[0], top: "32%", left: "35%", s: "44%" },
